@@ -26,6 +26,15 @@ Datenbank** durchgesetzt (siehe `supabase/migrations/0001_init.sql`). Das bedeut
 jemand den API-Schlüssel aus der App ausliest, kann er trotzdem nur seine eigenen Daten ändern —
 das erzwingt die Datenbank, nicht der Client.
 
+> **Hinweis zur SDK-Version:** Die App wurde ursprünglich mit Expo SDK 57 aufgebaut, dann aber
+> bewusst auf **SDK 54** zurückgestuft. Grund: Die im App Store/Play Store veröffentlichte
+> Expo-Go-App unterstützte zum Testzeitpunkt nur bis SDK 54 ("Project is incompatible with this
+> version of Expo Go"). Da Expo Go der einfachste Weg ist, die App ohne eigenen Build auf einem
+> echten Handy zu testen, hat Kompatibilität mit der aktuell installierbaren Expo-Go-Version Vorrang
+> vor der neuesten SDK-Version. Falls Expo Go später eine neuere SDK-Version unterstützt, kann die
+> App jederzeit wieder hochgestuft werden (`npx expo install expo@latest` und abhängige Pakete
+> entsprechend anpassen).
+
 ### Warum Expo + React Native?
 
 - Eine Codebasis für iOS und Android (Ziel laut Aufgabenstellung).
