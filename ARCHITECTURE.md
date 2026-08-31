@@ -138,7 +138,7 @@ halten. Alle sind ohne Architekturänderung erweiterbar:
 
 ## Branding / App-Name
 
-Der Name "ProteinFeed" taucht im Code **nur** in `src/constants/app.ts` auf. Alle Bildschirme
+Der Name "My Gym Meal" taucht im Code **nur** in `src/constants/app.ts` auf. Alle Bildschirme
 importieren `APP_NAME` von dort, statt den Namen selbst zu enthalten. Um die App umzubenennen:
 
 1. `src/constants/app.ts` anpassen.

@@ -1,10 +1,10 @@
-# ProteinFeed 🍚💪
+# My Gym Meal 🍚💪
 
 Eine mobile App zum **Entdecken, Teilen und Nachmachen von Fitness- und High-Protein-Rezepten**.
 Kein Kalorien-Tracker, kein Ernährungstagebuch — einfach ein Feed voller geiler, proteinreicher
 Rezepte, die du sofort nachkochen kannst.
 
-> **Hinweis zum Namen:** "ProteinFeed" ist ein Arbeitstitel. Er steht an genau einer Stelle im
+> **Hinweis zum Namen:** "My Gym Meal" ist ein Arbeitstitel. Er steht an genau einer Stelle im
 > Code (`src/constants/app.ts`) und kann dort jederzeit geändert werden, ohne im restlichen Code
 > etwas anpassen zu müssen.
 
@@ -139,19 +139,57 @@ Registriere ein Konto über **Profil → Anmelden → Jetzt registrieren** und l
 
 ## Deployment
 
-Für eine erste Testversion reicht **Expo Go** völlig aus (siehe oben). Für eine echte
-Veröffentlichung im App Store / Play Store nutzt man später
-[EAS Build](https://docs.expo.dev/build/introduction/) von Expo:
+Für die ersten Tests reicht **Expo Go** völlig aus (siehe oben). Sobald du die App an andere
+Leute (z. B. Kollegen mit iPhone) zum Testen verschicken willst, ohne dass sie selbst Node.js
+oder Expo Go brauchen, nutzt du **TestFlight** über Apple.
+
+### Voraussetzung: Apple Developer Account
+
+Auf [developer.apple.com](https://developer.apple.com/programs/) für 99 $/Jahr anmelden (braucht
+eine Apple-ID). Dieser eine Account reicht sowohl für TestFlight-Tests als auch später für die
+echte Veröffentlichung im App Store — kein zweiter Kauf nötig.
+
+### Build erstellen und zu TestFlight hochladen
+
+Im Projektordner, im Terminal:
 
 ```bash
 npm install -g eas-cli
 eas login
-eas build:configure
-eas build --platform ios      # oder: android
+eas build --platform ios --profile production
 ```
 
-Das ist bewusst **nicht** Teil der ersten Version — die App-Architektur (Expo + expo-router) ist
-aber genau dafür gemacht, dass dieser Schritt später ohne Codeänderungen möglich ist.
+- `eas login`: meldet dich mit deinem (kostenlosen) Expo-Account an. Falls du noch keinen hast,
+  wird beim Login automatisch einer erstellt.
+- Der Befehl fragt beim ersten Mal nach deinem Apple-Account und erstellt automatisch die nötigen
+  Zertifikate — einfach den Anweisungen im Terminal folgen.
+- Der Build läuft auf Expos Servern (kein Mac nötig) und dauert ca. 10–20 Minuten.
+
+Danach hochladen zu TestFlight:
+
+```bash
+eas submit --platform ios --latest
+```
+
+### Kollegen einladen
+
+1. Gehe auf [appstoreconnect.apple.com](https://appstoreconnect.apple.com) → deine App → **TestFlight**.
+2. Unter **"Interne Tests"** oder **"Externe Tests"** eine Gruppe anlegen und die E-Mail-Adressen
+   deiner Kollegen hinzufügen (bei "Externe Tests" prüft Apple die App einmal kurz, dauert meist
+   ein bis zwei Tage; bei internen Testern nicht nötig, aber auf max. 100 Personen mit Zugriff auf
+   dein Entwicklerteam beschränkt).
+3. Deine Kollegen laden sich die **TestFlight**-App aus dem App Store, bekommen eine Einladung per
+   E-Mail und installieren die App darüber.
+
+### Später: echte App-Store-Veröffentlichung
+
+Sobald die App bereit ist, lädst du mit **demselben** Apple Developer Account und **demselben**
+`eas submit`-Befehl dieselbe App reguär zur Veröffentlichung ein (Apple-Review, danach öffentlich
+im App Store). Es ist keine neue App, kein neues Projekt — nur ein weiterer Schritt im selben
+Prozess.
+
+Die App-Architektur (Expo + expo-router) ist genau darauf ausgelegt, dass dieser Schritt ohne
+Codeänderungen möglich ist.
 
 ## Typische Fehler & Lösungen
 

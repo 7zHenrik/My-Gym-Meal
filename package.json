@@ -1,5 +1,5 @@
 {
-  "name": "protein-feed",
+  "name": "my-gym-meal",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "dependencies": {
