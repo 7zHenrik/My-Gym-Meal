@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { router } from 'expo-router';
 import { useState } from 'react';
 
@@ -10,11 +11,14 @@ import { RecipeWithAuthor } from '@/types/database';
  * Local, optimistic like/save state for a single recipe. Kept outside of
  * React Query's cache on purpose: a recipe can appear in several lists at
  * once (feed, saved, profile) and syncing all of them on every tap would
- * add a lot of complexity for little benefit in a first version — screens
- * simply refetch the source of truth when they come back into focus.
+ * add a lot of complexity for little benefit in a first version. The one
+ * exception is the "Gespeichert" list itself: it's cheap to invalidate and
+ * without it the list can show a stale (cached) snapshot from before the
+ * save/unsave happened.
  */
 export function useRecipeInteractions(recipe: Pick<RecipeWithAuthor, 'id' | 'like_count' | 'is_liked' | 'is_saved'>) {
   const { session } = useAuth();
+  const queryClient = useQueryClient();
   const [isLiked, setIsLiked] = useState(!!recipe.is_liked);
   const [likeCount, setLikeCount] = useState(recipe.like_count);
   const [isSaved, setIsSaved] = useState(!!recipe.is_saved);
@@ -52,6 +56,7 @@ export function useRecipeInteractions(recipe: Pick<RecipeWithAuthor, 'id' | 'lik
     setIsTogglingSave(true);
     try {
       await (nextSaved ? saveRecipe(userId, recipe.id) : unsaveRecipe(userId, recipe.id));
+      queryClient.invalidateQueries({ queryKey: ['saved-recipes', userId] });
     } catch {
       setIsSaved(!nextSaved);
     } finally {
