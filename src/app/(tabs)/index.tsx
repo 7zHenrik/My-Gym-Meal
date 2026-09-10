@@ -1,3 +1,4 @@
+import { Image } from 'expo-image';
 import { useMemo, useState } from 'react';
 import { FlatList, RefreshControl, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -10,7 +11,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { FeedSort } from '@/api/recipes';
 import { APP_NAME } from '@/constants/app';
-import { MaxContentWidth, Spacing } from '@/constants/theme';
+import { BottomTabInset, MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import { useRecipeFeed } from '@/hooks/useRecipeFeed';
 import { RecipeWithAuthor } from '@/types/database';
 
@@ -29,9 +30,12 @@ export default function HomeScreen() {
     <ThemedView style={styles.container}>
       <SafeAreaView style={styles.safeArea} edges={['top']}>
         <View style={styles.header}>
-          <ThemedText type="title" style={styles.brand}>
-            {APP_NAME}
-          </ThemedText>
+          <View style={styles.brandRow}>
+            <Image source={require('@/assets/images/icon.png')} style={styles.brandIcon} />
+            <ThemedText type="title" style={styles.brand}>
+              {APP_NAME}
+            </ThemedText>
+          </View>
           <View style={styles.sortRow}>
             {SORT_OPTIONS.map((option) => (
               <Chip key={option.value} label={option.label} selected={sort === option.value} onPress={() => setSort(option.value)} />
@@ -85,6 +89,16 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.three,
     gap: Spacing.two,
   },
+  brandRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+  },
+  brandIcon: {
+    width: 34,
+    height: 34,
+    borderRadius: Radius.small,
+  },
   brand: {
     fontSize: 28,
     lineHeight: 34,
@@ -95,6 +109,6 @@ const styles = StyleSheet.create({
   },
   listContent: {
     paddingHorizontal: Spacing.three,
-    paddingBottom: Spacing.six,
+    paddingBottom: BottomTabInset,
   },
 });

@@ -1,7 +1,9 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
+import { AnimatedPressable } from '@/components/AnimatedPressable';
 import { Avatar } from '@/components/Avatar';
 import { LikeButton } from '@/components/LikeButton';
 import { SaveButton } from '@/components/SaveButton';
@@ -19,8 +21,8 @@ export function RecipeCard({ recipe }: { recipe: RecipeWithAuthor }) {
   const authorName = recipe.author?.display_name || recipe.author?.username || 'Unbekannt';
 
   return (
-    <Pressable onPress={() => router.push(`/recipe/${recipe.id}`)} style={styles.container}>
-      <View style={styles.imageWrapper}>
+    <AnimatedPressable onPress={() => router.push(`/recipe/${recipe.id}`)} style={styles.container}>
+      <View style={[styles.imageWrapper, { shadowColor: theme.text }]}>
         <Image
           source={{ uri: recipe.main_image_url }}
           style={styles.image}
@@ -28,13 +30,16 @@ export function RecipeCard({ recipe }: { recipe: RecipeWithAuthor }) {
           transition={200}
           placeholder={{ blurhash: 'L5H2EC=PM+yV0g-mq.wG9c010J}I' }}
         />
+        <LinearGradient colors={['rgba(0,0,0,0.32)', 'transparent']} style={styles.topScrim} pointerEvents="none" />
+        <LinearGradient colors={['transparent', 'rgba(0,0,0,0.55)']} style={styles.bottomScrim} pointerEvents="none" />
+
         <View style={styles.saveOverlay}>
-          <View style={[styles.iconBadge, { backgroundColor: theme.overlay }]}>
+          <View style={styles.iconBadge}>
             <SaveButton isSaved={isSaved} onPress={toggleSave} />
           </View>
         </View>
         {(recipe.protein_g || recipe.calories) ? (
-          <View style={[styles.nutritionPill, { backgroundColor: theme.overlay }]}>
+          <View style={styles.nutritionPill}>
             {recipe.protein_g ? <ThemedText type="smallBold" style={styles.pillText}>{Math.round(recipe.protein_g)} g Protein</ThemedText> : null}
             {recipe.protein_g && recipe.calories ? <ThemedText style={styles.pillDot}>·</ThemedText> : null}
             {recipe.calories ? <ThemedText type="smallBold" style={styles.pillText}>{recipe.calories} kcal</ThemedText> : null}
@@ -63,7 +68,7 @@ export function RecipeCard({ recipe }: { recipe: RecipeWithAuthor }) {
           </View>
         </View>
       </View>
-    </Pressable>
+    </AnimatedPressable>
   );
 }
 
@@ -75,10 +80,28 @@ const styles = StyleSheet.create({
     borderRadius: Radius.large,
     overflow: 'hidden',
     aspectRatio: 4 / 5,
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.16,
+    shadowRadius: 20,
+    elevation: 6,
   },
   image: {
     width: '100%',
     height: '100%',
+  },
+  topScrim: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 90,
+  },
+  bottomScrim: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 130,
   },
   saveOverlay: {
     position: 'absolute',
@@ -91,6 +114,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.22)',
   },
   nutritionPill: {
     position: 'absolute',
@@ -99,9 +123,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.one,
-    paddingHorizontal: Spacing.two,
-    paddingVertical: 6,
-    borderRadius: Radius.full,
   },
   pillText: {
     color: '#FFFFFF',

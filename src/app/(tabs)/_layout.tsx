@@ -1,7 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
+import { BlurView } from 'expo-blur';
 import { Tabs } from 'expo-router';
-import { ColorValue, StyleSheet } from 'react-native';
+import { ColorValue, Platform, StyleSheet } from 'react-native';
 
+import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useTheme } from '@/hooks/use-theme';
 
 type IconName = keyof typeof Ionicons.glyphMap;
@@ -12,14 +14,23 @@ function TabIcon({ name, color, size = 24 }: { name: IconName; color: ColorValue
 
 export default function TabsLayout() {
   const theme = useTheme();
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
 
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: theme.text,
+        tabBarActiveTintColor: theme.accent,
         tabBarInactiveTintColor: theme.textTertiary,
-        tabBarStyle: [styles.tabBar, { backgroundColor: theme.background, borderTopColor: theme.border }],
+        tabBarStyle:
+          Platform.OS === 'ios'
+            ? styles.tabBarFloating
+            : [styles.tabBar, { backgroundColor: theme.background, borderTopColor: theme.border }],
+        tabBarBackground:
+          Platform.OS === 'ios'
+            ? () => <BlurView intensity={80} tint={isDark ? 'dark' : 'light'} style={StyleSheet.absoluteFill} />
+            : undefined,
         tabBarLabelStyle: styles.label,
       }}>
       <Tabs.Screen
@@ -66,6 +77,11 @@ export default function TabsLayout() {
 const styles = StyleSheet.create({
   tabBar: {
     borderTopWidth: StyleSheet.hairlineWidth,
+  },
+  tabBarFloating: {
+    position: 'absolute',
+    backgroundColor: 'transparent',
+    borderTopWidth: 0,
   },
   label: {
     fontSize: 11,

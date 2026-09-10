@@ -1,5 +1,6 @@
-import { Pressable, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
+import { AnimatedPressable } from '@/components/AnimatedPressable';
 import { ThemedText } from '@/components/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
@@ -16,19 +17,20 @@ export function Chip({
   const theme = useTheme();
 
   return (
-    <Pressable
+    <AnimatedPressable
       onPress={onPress}
+      scaleTo={0.94}
       style={[
         styles.chip,
         {
-          backgroundColor: selected ? theme.text : theme.backgroundElement,
-          borderColor: selected ? theme.text : theme.border,
+          backgroundColor: selected ? theme.accent : theme.backgroundElement,
+          borderColor: selected ? theme.accent : theme.border,
         },
       ]}>
-      <ThemedText type="smallBold" style={{ color: selected ? theme.background : theme.text }}>
+      <ThemedText type="smallBold" style={{ color: selected ? theme.accentText : theme.text }}>
         {label}
       </ThemedText>
-    </Pressable>
+    </AnimatedPressable>
   );
 }
 

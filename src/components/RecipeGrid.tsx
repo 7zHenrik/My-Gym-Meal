@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 
 import { RecipeCard } from '@/components/RecipeCard';
-import { Spacing } from '@/constants/theme';
+import { BottomTabInset, Spacing } from '@/constants/theme';
 import { RecipeWithAuthor } from '@/types/database';
 
 export function RecipeGrid({
@@ -35,7 +35,7 @@ export function RecipeGrid({
 const styles = StyleSheet.create({
   listContent: {
     paddingHorizontal: Spacing.three,
-    paddingBottom: Spacing.six,
+    paddingBottom: BottomTabInset,
   },
   column: {
     gap: Spacing.three,

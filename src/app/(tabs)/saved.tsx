@@ -7,7 +7,7 @@ import { RecipeCard } from '@/components/RecipeCard';
 import { FeedSkeleton } from '@/components/Skeleton';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { MaxContentWidth, Spacing } from '@/constants/theme';
+import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useSavedRecipes } from '@/hooks/useSavedRecipes';
 
 export default function SavedScreen() {
@@ -50,5 +50,5 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   safeArea: { flex: 1, alignSelf: 'center', width: '100%', maxWidth: MaxContentWidth },
   header: { fontSize: 28, lineHeight: 34, paddingHorizontal: Spacing.three, paddingTop: Spacing.two, paddingBottom: Spacing.three },
-  listContent: { paddingHorizontal: Spacing.three, paddingBottom: Spacing.six },
+  listContent: { paddingHorizontal: Spacing.three, paddingBottom: BottomTabInset },
 });

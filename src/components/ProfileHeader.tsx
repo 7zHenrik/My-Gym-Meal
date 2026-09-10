@@ -17,7 +17,7 @@ export function ProfileHeader({
 }) {
   return (
     <View style={styles.container}>
-      <Avatar uri={profile.avatar_url} size={84} />
+      <Avatar uri={profile.avatar_url} size={84} ring />
       <ThemedText type="title" style={styles.username}>
         @{profile.username}
       </ThemedText>

@@ -28,8 +28,8 @@ export function NutritionGrid({ calories, proteinG, carbsG, fatG, fiberG }: Nutr
   return (
     <View style={styles.grid}>
       {items.map((item) => (
-        <View key={item.label} style={[styles.cell, { backgroundColor: theme.backgroundElement }]}>
-          <ThemedText type="title" style={styles.value}>
+        <View key={item.label} style={[styles.cell, { backgroundColor: theme.backgroundElement, shadowColor: theme.text }]}>
+          <ThemedText type="title" themeColor="accent" style={styles.value}>
             {item.value}
           </ThemedText>
           <ThemedText type="small" themeColor="textSecondary">
@@ -55,6 +55,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.two,
     alignItems: 'center',
     gap: 2,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.06,
+    shadowRadius: 10,
+    elevation: 1,
   },
   value: {
     fontSize: 22,

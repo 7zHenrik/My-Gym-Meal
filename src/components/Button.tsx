@@ -1,5 +1,6 @@
-import { ActivityIndicator, Pressable, StyleSheet, ViewStyle } from 'react-native';
+import { ActivityIndicator, StyleSheet, ViewStyle } from 'react-native';
 
+import { AnimatedPressable } from '@/components/AnimatedPressable';
 import { ThemedText } from '@/components/themed-text';
 import { Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
@@ -49,15 +50,20 @@ export function Button({
   const borderColor = variant === 'outline' ? theme.border : 'transparent';
 
   return (
-    <Pressable
+    <AnimatedPressable
       onPress={onPress}
       disabled={isDisabled}
-      style={({ pressed }) => [
+      scaleTo={0.96}
+      style={[
         styles.base,
         fullWidth && styles.fullWidth,
-        { backgroundColor, borderColor, borderWidth: variant === 'outline' ? StyleSheet.hairlineWidth * 2 : 0 },
+        {
+          backgroundColor,
+          borderColor,
+          borderWidth: variant === 'outline' ? StyleSheet.hairlineWidth * 2 : 0,
+          shadowColor: variant === 'primary' ? theme.accent : 'transparent',
+        },
         isDisabled && styles.disabled,
-        pressed && !isDisabled && styles.pressed,
         style,
       ]}>
       {loading ? (
@@ -70,7 +76,7 @@ export function Button({
           </ThemedText>
         </>
       )}
-    </Pressable>
+    </AnimatedPressable>
   );
 }
 
@@ -83,14 +89,15 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: Spacing.four,
     borderRadius: Radius.full,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.28,
+    shadowRadius: 14,
+    elevation: 3,
   },
   fullWidth: {
     alignSelf: 'stretch',
   },
   disabled: {
     opacity: 0.5,
-  },
-  pressed: {
-    opacity: 0.85,
   },
 });

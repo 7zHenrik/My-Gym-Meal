@@ -15,7 +15,7 @@ import { Chip } from '@/components/Chip';
 import { TextField } from '@/components/TextField';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Radius, Spacing } from '@/constants/theme';
+import { BottomTabInset, Radius, Spacing } from '@/constants/theme';
 import { useAuth } from '@/context/AuthProvider';
 import { useCategories } from '@/hooks/useCategories';
 import { useTheme } from '@/hooks/use-theme';
@@ -391,7 +391,7 @@ function FormSection({ title, subtitle, children }: { title: string; subtitle?: 
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  content: { padding: Spacing.three, paddingBottom: Spacing.six, gap: Spacing.five },
+  content: { padding: Spacing.three, paddingBottom: BottomTabInset, gap: Spacing.five },
   title: { fontSize: 26, lineHeight: 32 },
   section: { gap: Spacing.three },
   sectionTitle: { fontSize: 18, lineHeight: 23 },

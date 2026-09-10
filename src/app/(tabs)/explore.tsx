@@ -11,7 +11,7 @@ import { FeedSkeleton } from '@/components/Skeleton';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { CALORIE_FILTERS, PROTEIN_FILTERS } from '@/constants/filters';
-import { MaxContentWidth, Radius, Spacing } from '@/constants/theme';
+import { BottomTabInset, MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import { useCategories } from '@/hooks/useCategories';
 import { useRecipeFeed } from '@/hooks/useRecipeFeed';
 import { useTheme } from '@/hooks/use-theme';
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
   listContent: {
     padding: Spacing.three,
-    paddingBottom: Spacing.six,
+    paddingBottom: BottomTabInset,
   },
   column: {
     gap: Spacing.three,
