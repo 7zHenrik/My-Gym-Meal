@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Gym Meal Datenschutz</title>
+<meta name="description" content="Datenschutzerklaerung fuer die My Gym Meal App (TestFlight-Beta): welche Daten erhoben werden, wofuer, und wie man sie loeschen lassen kann.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFCFA; --surface: #FFFFFF; --surface-sunken: #FBF2EC; --border: #F0E2D8;
+    --ink: #18120E; --ink-soft: #6B5D52; --ink-faint: #A79789;
+    --accent: #FF4A5C; --accent-deep: #D82C3E; --accent-ink: #FFFFFF; --accent-soft: #FFE7E9;
+    --display: "Bricolage Grotesque", "Segoe UI", sans-serif;
+    --sans: "Manrope", -apple-system, "Segoe UI", sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #120F0D; --surface: #1B1613; --surface-sunken: #221B17; --border: #34281F;
+      --ink: #F8F0E9; --ink-soft: #C4B4A5; --ink-faint: #7E6E60;
+      --accent: #FF6B7A; --accent-deep: #FF8794; --accent-ink: #1C0E10; --accent-soft: #3A1E22;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #120F0D; --surface: #1B1613; --surface-sunken: #221B17; --border: #34281F;
+    --ink: #F8F0E9; --ink-soft: #C4B4A5; --ink-faint: #7E6E60;
+    --accent: #FF6B7A; --accent-deep: #FF8794; --accent-ink: #1C0E10; --accent-soft: #3A1E22;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); padding-inline: 20px; padding-block: 0 40px; }
+  h1, h2 { font-family: var(--display); text-wrap: balance; margin: 0; }
+  a { color: var(--accent-deep); }
+  .wrap { max-width: 700px; margin-inline: auto; }
+  nav { display: flex; align-items: center; gap: 12px; padding-block: 22px; margin-bottom: 8px; }
+  .mark { width: 34px; height: 34px; border-radius: 9px; background: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .mark svg { width: 20px; height: 20px; }
+  .wordmark { font-family: var(--display); font-weight: 700; font-size: 17px; }
+  .doc-pill { margin-left: auto; font-size: 12px; font-weight: 700; letter-spacing: 0.03em; color: var(--accent-deep); background: var(--accent-soft); border-radius: 999px; padding: 6px 12px; }
+  .titleblock { padding-block: 8px 32px; }
+  .titleblock .eyebrow { display: block; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-deep); margin-bottom: 12px; }
+  .titleblock h1 { font-size: clamp(28px, 4.4vw, 38px); font-weight: 800; line-height: 1.08; }
+  .titleblock .lede { margin-top: 14px; font-size: 16px; line-height: 1.6; color: var(--ink-soft); max-width: 56ch; }
+  .titleblock .stamp { margin-top: 16px; font-family: var(--mono); font-size: 12px; color: var(--ink-faint); }
+  .quickfacts { background: var(--accent-soft); border-radius: 20px; padding: 24px; margin-bottom: 40px; }
+  .quickfacts .label { font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--accent-deep); margin: 0 0 14px; }
+  .quickfacts ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .quickfacts li { position: relative; padding-left: 18px; font-size: 14.5px; line-height: 1.55; }
+  .quickfacts li::before { content: ""; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .quickfacts b { font-weight: 700; }
+  section.item { padding-block: 28px; border-top: 1px solid var(--border); display: grid; grid-template-columns: 52px 1fr; gap: 18px; }
+  section.item:last-child { padding-bottom: 0; }
+  .num { font-family: var(--mono); font-size: 13px; color: var(--ink-faint); padding-top: 3px; }
+  section.item h2 { font-size: 19px; font-weight: 700; margin: 0 0 10px; }
+  section.item p, section.item li { font-size: 15px; line-height: 1.65; color: var(--ink); max-width: 60ch; }
+  section.item p + p { margin-top: 12px; }
+  section.item ul { margin: 10px 0 0; padding-left: 20px; }
+  section.item li + li { margin-top: 6px; }
+  section.item li::marker { color: var(--ink-faint); }
+  .contact { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px; margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+  .contact .label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 4px; }
+  .contact .email { font-family: var(--display); font-size: 19px; font-weight: 700; }
+  .contact .email a { color: var(--ink); text-decoration: none; border-bottom: 1.5px solid var(--accent); }
+  .contact .cta { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: var(--bg); font-weight: 700; font-size: 14px; padding: 12px 20px; border-radius: 999px; text-decoration: none; white-space: nowrap; }
+  footer { border-top: 1px solid var(--border); margin-top: 40px; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 13px; color: var(--ink-faint); }
+  footer nav.flinks { display: flex; gap: 18px; padding: 0; margin: 0; }
+  footer a { text-decoration: none; color: var(--ink-soft); }
+  footer a:hover { color: var(--accent-deep); }
+  @media (max-width: 480px) { section.item { grid-template-columns: 1fr; gap: 6px; } .num { padding-top: 0; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 1024 1024" fill="none">
+        <circle cx="512" cy="512" r="300" fill="none" stroke="#FFFFFF" stroke-width="34"/>
+        <g fill="#FFFFFF">
+          <rect x="442" y="500" width="140" height="24" rx="12"/>
+          <rect x="422" y="487" width="20" height="50" rx="8"/>
+          <rect x="582" y="487" width="20" height="50" rx="8"/>
+          <rect x="362" y="442" width="60" height="140" rx="16"/>
+          <rect x="602" y="442" width="60" height="140" rx="16"/>
+          <rect x="332" y="462" width="30" height="100" rx="10"/>
+          <rect x="662" y="462" width="30" height="100" rx="10"/>
+        </g>
+      </svg>
+    </div>
+    <div class="wordmark">My Gym Meal</div>
+    <div class="doc-pill">Datenschutz</div>
+  </nav>
+
+  <div class="titleblock">
+    <span class="eyebrow">Rechtliches</span>
+    <h1>Wie wir mit deinen Daten umgehen</h1>
+    <p class="lede">My Gym Meal ist eine App zum Entdecken und Teilen von Fitness- und High-Protein-Rezepten, aktuell in der TestFlight-Beta-Phase. Diese Seite erklaert in klarer Sprache, welche Daten dabei erhoben werden und warum.</p>
+    <div class="stamp">Stand: 11. September 2026</div>
+  </div>
+
+  <div class="quickfacts">
+    <p class="label">Kurz zusammengefasst</p>
+    <ul>
+      <li><b>Kein Verkauf deiner Daten.</b> Wir geben nichts an Werbenetzwerke oder Datenhaendler weiter.</li>
+      <li><b>Kein Tracking ueber andere Apps hinweg.</b> Es gibt keine Werbe-SDKs in der App.</li>
+      <li>Gespeichert werden nur <b>Account-Daten</b> und <b>Inhalte, die du selbst hochlaedst</b> (Rezepte, Fotos, Videos, Kommentare).</li>
+      <li>Du kannst jederzeit die <b>Loeschung deines Kontos</b> und aller Daten verlangen.</li>
+    </ul>
+  </div>
+
+  <div class="sections">
+
+    <section class="item">
+      <div class="num">01</div>
+      <div>
+        <h2>Welche Daten wir erheben</h2>
+        <p>Bei der Registrierung: deine E-Mail-Adresse, ein selbst gewaehlter Benutzername sowie ein verschluesseltes Passwort.</p>
+        <p>Optional in deinem Profil: Anzeigename, Profilbild, kurze Bio.</p>
+        <p>Inhalte, die du erstellst: Rezepttitel, Beschreibung, Zutaten, Zubereitungsschritte, Naehrwertangaben, hochgeladene Fotos/Videos, Kommentare, sowie welche Rezepte du likst oder speicherst.</p>
+      </div>
+    </section>
+
+    <section class="item">
+      <div class="num">02</div>
+      <div>
+        <h2>Wofuer wir diese Daten nutzen</h2>
+        <ul>
+          <li>Um dein Konto zu erstellen und dich anzumelden</li>
+          <li>Um deine Rezepte im Feed anderer Nutzer anzuzeigen</li>
+          <li>Um Funktionen wie Liken, Speichern und Kommentieren zu ermoeglichen</li>
+          <li>Um auf Meldungen (z. B. unangemessene Inhalte) reagieren zu koennen</li>
+        </ul>
+        <p>Es gibt keine personalisierte Werbung und keine Weitergabe deiner Daten zu Marketingzwecken.</p>
+      </div>
+    </section>
+
+    <section class="item">
+      <div class="num">03</div>
+      <div>
+        <h2>Wo deine Daten gespeichert werden</h2>
+        <p>Die App nutzt <a href="https://supabase.com" target="_blank" rel="noopener">Supabase</a> als Datenbank- und Speicher-Anbieter fuer Konten, Rezepte, Bilder und Videos. Die Verbindung zwischen App und Supabase ist durchgehend verschluesselt (HTTPS). Zugriffsregeln auf Datenbankebene stellen sicher, dass du nur deine eigenen Inhalte bearbeiten oder loeschen kannst.</p>
+      </div>
+    </section>
+
+    <section class="item">
+      <div class="num">04</div>
+      <div>
+        <h2>TestFlight und Apple</h2>
+        <p>Solange sich die App in der Beta-Phase befindet, wird sie ueber Apples <b>TestFlight</b> verteilt. Apple erhaelt dabei die fuer TestFlight ueblichen technischen Daten (z. B. Absturzberichte), die separat Apples eigener <a href="https://www.apple.com/legal/privacy/de-ww/" target="_blank" rel="noopener">Datenschutzerklaerung</a> unterliegen.</p>
+      </div>
+    </section>
+
+    <section class="item">
+      <div class="num">05</div>
+      <div>
+        <h2>Weitergabe an Dritte</h2>
+        <p>Deine Daten werden nicht verkauft und nicht an Werbe- oder Analysefirmen weitergegeben. Eine Weitergabe erfolgt ausschliesslich an technische Dienstleister, die zum Betrieb der App notwendig sind (aktuell: Supabase fuer Datenbank/Speicher), sowie wenn gesetzlich vorgeschrieben.</p>
+      </div>
+    </section>
+
+    <section class="item">
+      <div class="num">06</div>
+      <div>
+        <h2>Deine Rechte</h2>
+        <p>Du kannst jederzeit:</p>
+        <ul>
+          <li>Auskunft ueber die zu dir gespeicherten Daten verlangen</li>
+          <li>Dein Profil und deine Rezepte direkt in der App bearbeiten oder loeschen</li>
+          <li>Die vollstaendige Loeschung deines Kontos und aller zugehoerigen Daten verlangen</li>
+        </ul>
+        <p>Fuer Anfragen zu Auskunft oder Loeschung wende dich an die unten stehende Kontaktadresse.</p>
+      </div>
+    </section>
+
+    <section class="item">
+      <div class="num">07</div>
+      <div>
+        <h2>Kinder und Jugendliche</h2>
+        <p>My Gym Meal richtet sich nicht gezielt an Kinder unter 16 Jahren. Sollten wir feststellen, dass Daten eines Kindes ohne Zustimmung eines Erziehungsberechtigten erhoben wurden, werden diese auf Anfrage geloescht.</p>
+      </div>
+    </section>
+
+    <section class="item">
+      <div class="num">08</div>
+      <div>
+        <h2>Aenderungen dieser Erklaerung</h2>
+        <p>Da sich die App noch in aktiver Entwicklung befindet, kann sich diese Erklaerung aendern. Das Datum oben ("Stand") zeigt die letzte Aktualisierung.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="contact">
+    <div>
+      <p class="label">Fragen zum Datenschutz</p>
+      <p class="email"><a href="mailto:henrik.pflug1202@gmail.com">henrik.pflug1202@gmail.com</a></p>
+    </div>
+    <a class="cta" href="mailto:henrik.pflug1202@gmail.com">Kontakt aufnehmen</a>
+  </div>
+
+  <footer>
+    <span>My Gym Meal - TestFlight-Beta</span>
+    <nav class="flinks">
+      <a href="./index.html">Zur Startseite</a>
+      <a href="mailto:henrik.pflug1202@gmail.com">Kontakt</a>
+    </nav>
+  </footer>
+
+</div>
+</body>
+</html>
